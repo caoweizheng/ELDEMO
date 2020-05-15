@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from "./store"
+import api from './api'
 import {
   Pagination,
   Dialog,
@@ -81,14 +82,18 @@ import {
   Loading,
   MessageBox,
   Message,
-  Notification
+  Notification,
+  Popconfirm
 } from 'element-ui';
-
+import appPagination from '@/components/pagination'
+import appDatePicker from '@/components/datePicker'
+import orderDetail from '@/components/order.detail'
 import '@/styles/index.scss' // global css
 
 Vue.config.productionTip = false
 
 
+Vue.use(api);
 Vue.use(Pagination);
 Vue.use(Dialog);
 Vue.use(Autocomplete);
@@ -162,6 +167,11 @@ Vue.use(Calendar);
 Vue.use(Backtop);
 Vue.use(PageHeader);
 Vue.use(CascaderPanel);
+Vue.use(Popconfirm);
+
+Vue.component('app-pagination', appPagination);
+Vue.component('app-date-picker', appDatePicker);
+Vue.component('order-detail', orderDetail);
 
 Vue.use(Loading.directive);
 

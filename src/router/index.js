@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
- const router = new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -18,7 +18,7 @@ Vue.use(Router)
       children: [
         {
           path: 'dashboard',
-          name: 'DashboardHome',
+          name: '首页',
           meta: {
             index: 1,
             icon: 'el-icon-pie-chart',
@@ -30,21 +30,30 @@ Vue.use(Router)
       ]
     },
     {
-      path: '/product',
-      name: 'Product',
+      path: '/allocate',
+      name: '调配管理',
       meta: {
         index: 2,
         icon: 'el-icon-collection-tag',
-        title: '商品管理'
+        title: '调配管理'
       },
       component: () => import('@/common/layout'),
       children: [
         {
-          path: '/product/list',
-          name: 'ProductList',
-          component: () => import('@/page/product'),
+          path: '/allocate/list',
+          name: '出货单',
+          component: () => import('@/page/allocate'),
           meta: {
-            title: '商品列表'
+            title: '出货单'
+          }
+        },
+        {
+          path: '/allocate/create-shipment',
+          name: '新建出货单',
+          component: () => import('@/page/allocate/create-allocate-shipment'),
+          hidden: true,
+          meta: {
+            title: '新建出货单'
           }
         }
       ]
@@ -88,7 +97,7 @@ Vue.use(Router)
       hidden: true
     }
   ],
-  mode:'history'
+  mode: 'history'
 })
 
 export default router
