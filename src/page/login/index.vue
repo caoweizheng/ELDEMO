@@ -2,15 +2,15 @@
   <div class="app-login">
     <h2 class="title">东咕隆东锵</h2>
     <div class="content">
-      <el-form>
-        <el-form-item>
-          <el-input v-model="username" placeholder="用户名"></el-input>
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
+        <el-form-item prop="username">
+          <el-input v-model="ruleForm.username" placeholder="用户名"></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input v-model="ruleForm.password" placeholder="密码" show-password></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="password" placeholder="密码" show-password></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button class="login-btn" @click="login">
+          <el-button class="login-btn" @click="submitForm('ruleForm')">
               登录
           </el-button>
           <a class="forget" href="">忘记密码？</a>
@@ -32,16 +32,37 @@ export default {
   },
   data () {
     return {
-      username: '',
-      password: ''
+      ruleForm: {
+        username: '',
+        password: ''
+      },
+      rules: {
+        username: [
+          {required: true, message: '请输入用户名', trigger: 'blur'},
+          {min: 3, max: 10, message: '长度3 - 10', trigger: 'blur'}
+        ],
+        password: [
+          {required: true, message: '请输入密码', trigger: 'blur'},
+          {min: 5, max: 18, message: '长度5 - 18', trigger: 'blur'}
+        ]
+      }
     }
   },
   methods: {
-    login () {
+    submitForm (ruleFormName) {
       // 登入
-      // 缓存session
+      this.$refs[ruleFormName].validate(async (valid) => {
+        if(valid){
 
-      this.$router.push('/')
+          let loginRes = await this.$http.login({
+            ...this.ruleForm
+          })
+          if(loginRes) {
+            // 缓存session
+            this.$router.push('/')
+          }
+        }
+      })
     }
   }
 

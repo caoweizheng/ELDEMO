@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-w p-20">
     <el-form :inline="true">
       <el-form-item label="建单时间" class="block">
         <app-date-picker v-model="searchParams.startTime" type="date" align="right" placeholder="开始时间">
@@ -30,7 +30,7 @@
         <el-button :disabled="isLoading" type="info" @click="reset()">重置</el-button>
       </el-form-item>
     </el-form>
-    <div class="row-box">
+    <div class="m-b-20">
       <el-row type="flex" justify="space-between">
         <el-button type="primary" @click="createShipment()" icon="el-icon-plus">新建出货单</el-button>
         <el-button type="primary" @click="search()" :disabled="isDoanloading" icon="el-icon-download">导出单据明细</el-button>
@@ -135,7 +135,6 @@ export default {
   computed: {},
   methods: {
     async search(pageNum) {
-      console.log(this.searchParams);
       this.pageOptions.pageNumber = pageNum
         ? pageNum
         : this.pageOptions.pageNumber;
@@ -183,9 +182,6 @@ export default {
 .item {
   margin-top: 10px;
   margin-right: 40px;
-}
-.row-box {
-  margin-bottom: 20px;
 }
 </style>
 

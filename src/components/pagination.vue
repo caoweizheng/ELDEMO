@@ -1,5 +1,5 @@
 <template>
-    <el-pagination
+  <el-pagination
     background
     layout="total, prev, pager, next"
     :current-page="pageNumber"

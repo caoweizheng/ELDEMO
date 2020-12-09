@@ -2,7 +2,7 @@
   <div class="app-main">
     <div>
       <div class="main-head">
-        <h4>{{$route.name}}</h4>
+        <base-breadcrumb />
       </div>
       <div class="content">
         <router-view />
@@ -31,10 +31,12 @@ export default {
   padding: 8px;
   background-color: #eee;
   .content {
-  background:#fff;
-    padding: 25px;
+    padding: 10px 0;
   }
 }
+// "Patterndesigner"  Patterndesigner
+// Emotion 或 Styled Components 来填补样式的空缺
+// Classnmes 是一个很棒的库，可以方便地连接和动态构造应用于 HTML 元素的 CSS 类名
 </style>
 
 

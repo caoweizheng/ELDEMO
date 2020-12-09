@@ -88,7 +88,10 @@ import {
 import appPagination from '@/components/pagination'
 import appDatePicker from '@/components/datePicker'
 import orderDetail from '@/components/order.detail'
+import appSteps from '@/components/steps'
 import '@/styles/index.scss' // global css
+
+import BaseBreadcrumb from "@/components/base-breadcrumb";
 
 Vue.config.productionTip = false
 
@@ -172,6 +175,8 @@ Vue.use(Popconfirm);
 Vue.component('app-pagination', appPagination);
 Vue.component('app-date-picker', appDatePicker);
 Vue.component('order-detail', orderDetail);
+Vue.component('app-steps', appSteps);
+Vue.component('base-breadcrumb', BaseBreadcrumb);
 
 Vue.use(Loading.directive);
 

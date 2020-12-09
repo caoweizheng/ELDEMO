@@ -9,6 +9,9 @@ import { baseURL } from "./config"
 const http = axios.create({
 
 })
+
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 // axios请求拦截器， 在发送请求之前做些什么
 axios.interceptors.request.use((config) => {
   // loadding
@@ -25,8 +28,13 @@ axios.interceptors.request.use((config) => {
 })
 
 // 对响应数据做点什么，允许在数据返回客户端前，修改响应的数据
-axios.interceptors.response.use(async(response) => {
-  return response
+axios.interceptors.response.use(async (response) => {
+  // 后端返回的 code
+  if (response && response.data && response.data.code === 0) {
+    return response
+  } else {
+    return Promise.reject(response)
+  }
 }, (error) => {
   // Toast.fail()
   return Promise.reject(error)
@@ -36,44 +44,50 @@ axios.interceptors.response.use(async(response) => {
 function errorState (response) {
   // 隐藏loadding
   if (response && (response.status === 200 || response.status === 304 || response.status === 400)) {
-    return response;
+    Vue.prototype.$message({
+      type: 'warning',
+      message: response.data.message || '请求失败'
+    })
   } else {
     // 数据返回失败处理
-    // Toast('请求失败')
+    Vue.prototype.$message({
+      type: 'error',
+      message: '请求失败'
+    })
   }
 }
 // 封装数据返回成功
-function successState(resp) {
-  console.log(resp)
-  if(resp.code === 0) { // 后端返回的code
-    // to do?
-    return resp;
-  } else {
-    // Toast('异常的状态码')
-  }
+function successState (resp) {
+  Vue.prototype.$message({
+    type: 'success',
+    message: '操作成功'
+  })
+  // to do?
+  return resp;
+
 }
 
 // 封装axios
-function apiAxios(method, url, params) {
-  console.log(params)
+function apiAxios (method, url, params) {
+  console.log('params:', params)
   let httpDefault = {
     method: method,
     baseURL: baseURL,
     url: url,
     params: (method === 'GET' || method === 'DELETE') ? params : null,
-    data: (method === 'POST' || method === 'PUT') ? Qs.stringify(params) : null,
+    data: (method === 'POST' || method === 'PUT') ? params : null,
     timeout: 20 * 1000
   }
   return new Promise((resolve, reject) => {
     axios(httpDefault)
-    .then(res => { // 此处.then属于axios
-      successState(res)
-      resolve(res)
-    })
-    .catch(response => {
-      errorState(response)
-      reject(response)
-    })
+      .then(res => { // 此处.then属于axios
+        successState(res)
+        resolve(res)
+      })
+      .catch(response => {
+        errorState(response)
+        // reject(response)
+      })
   })
 }
 export default {

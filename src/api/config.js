@@ -12,6 +12,11 @@ export default {
     return axios.post('/queryProductDetail', params).then(resp => {
       return resp
     })
+  },
+  login(params) {
+    return axios.post('/app/user/login', params).then(resp => {
+      return resp
+    })
   }
 }
 
