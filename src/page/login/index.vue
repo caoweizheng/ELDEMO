@@ -2,7 +2,7 @@
   <div class="app-login">
     <h2 class="title">东咕隆东锵</h2>
     <div class="content">
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
+      <el-form>
         <el-form-item prop="username">
           <el-input v-model="ruleForm.username" placeholder="用户名"></el-input>
         </el-form-item>
@@ -49,10 +49,10 @@ export default {
     }
   },
   methods: {
-    submitForm (ruleFormName) {
+    async submitForm (ruleFormName) {
       // 登入
-      this.$refs[ruleFormName].validate(async (valid) => {
-        if(valid){
+      // this.$refs[ruleFormName].validate(async (valid) => {
+      //   if(valid){
 
           let loginRes = await this.$http.login({
             ...this.ruleForm
@@ -62,8 +62,8 @@ export default {
             this.$router.push('/')
           }
         }
-      })
-    }
+      // })
+    // }
   }
 
 }

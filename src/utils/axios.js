@@ -69,10 +69,10 @@ function successState (resp) {
 
 // 封装axios
 function apiAxios (method, url, params) {
-  console.log('params:', params)
+  console.log('request:', { method, url, params, baseURL })
   let httpDefault = {
     method: method,
-    baseURL: baseURL,
+    baseURL: '/api',
     url: url,
     params: (method === 'GET' || method === 'DELETE') ? params : null,
     data: (method === 'POST' || method === 'PUT') ? params : null,
