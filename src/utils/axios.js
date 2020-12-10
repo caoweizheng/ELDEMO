@@ -4,7 +4,7 @@
 import Vue from "vue"
 import axios from 'axios'
 import Qs from 'qs'
-import { baseURL } from "./config"
+import { baseURL, baseHOST } from "./config"
 
 const http = axios.create({
 
@@ -72,7 +72,7 @@ function apiAxios (method, url, params) {
   console.log('request:', { method, url, params, baseURL })
   let httpDefault = {
     method: method,
-    baseURL: '/api',
+    baseURL: baseHOST,
     url: url,
     params: (method === 'GET' || method === 'DELETE') ? params : null,
     data: (method === 'POST' || method === 'PUT') ? params : null,
