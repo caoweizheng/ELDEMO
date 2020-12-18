@@ -6,7 +6,7 @@ import router from './router'
 import store from "./store"
 import api from './api'
 import 'element-ui/lib/theme-chalk/index.css'
-import '@/styles/index.scss'
+import '@/styles/index.scss' // global css
 import {
   Pagination,
   Dialog,
@@ -20,8 +20,8 @@ import {
   // MenuItemGroup,
   Input,
   // InputNumber,
-  // Radio,
-  // RadioGroup,
+  Radio,
+  RadioGroup,
   // RadioButton,
   // Checkbox,
   // CheckboxButton,
@@ -59,7 +59,7 @@ import {
   // Card,
   // Rate,
   Steps,
-  // Step,
+  Step,
   // Carousel,
   // CarouselItem,
   // Collapse,
@@ -91,7 +91,6 @@ import appPagination from '@/components/pagination'
 import appDatePicker from '@/components/datePicker'
 import orderDetail from '@/components/order.detail'
 import appSteps from '@/components/steps'
-import '@/styles/index.scss' // global css
 
 import BaseBreadcrumb from "@/components/base-breadcrumb";
 
@@ -111,8 +110,8 @@ Vue.use(Dialog);
 // Vue.use(MenuItemGroup);
 Vue.use(Input);
 // Vue.use(InputNumber);
-// Vue.use(Radio);
-// Vue.use(RadioGroup);
+Vue.use(Radio);
+Vue.use(RadioGroup);
 // Vue.use(RadioButton);
 // Vue.use(Checkbox);
 // Vue.use(CheckboxButton);
@@ -150,7 +149,7 @@ Vue.use(Col);
 // Vue.use(Card);
 // Vue.use(Rate);
 Vue.use(Steps);
-// Vue.use(Step);
+Vue.use(Step);
 // Vue.use(Carousel);
 // Vue.use(CarouselItem);
 // Vue.use(Collapse);
@@ -172,7 +171,7 @@ Vue.use(Steps);
 // Vue.use(Backtop);
 // Vue.use(PageHeader);
 // Vue.use(CascaderPanel);
-// Vue.use(Popconfirm);
+Vue.use(Popconfirm);
 
 Vue.component('app-pagination', appPagination);
 Vue.component('app-date-picker', appDatePicker);
@@ -189,6 +188,8 @@ Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
+
+store.commit('updateUserInfo');
 
 /* eslint-disable no-new */
 new Vue({

@@ -5,10 +5,11 @@
 </template>
 
 <script>
+// import {Chart} from 'highcharts-vue'
 export default {
   name: 'DashboardHome',
   components: {
-
+    // highcharts: Chart
   },
   data () {
     return {

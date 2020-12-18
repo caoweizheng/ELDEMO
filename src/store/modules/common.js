@@ -1,6 +1,6 @@
 export default {
   state: {
-    autoCollapse: false
+    autoCollapse: false,
   },
   mutations: {
     AUTO_COLLAPSE (state) {

@@ -11,7 +11,7 @@
     </p>
     <p class="logout">
       <el-button type="text" @click="logout">
-        注销
+      {{$store.state.user.userInfo.userName}} - {{$store.state.user.userInfo.nickName}} &nbsp;注销
       </el-button>
     </p>
   </div>
@@ -37,6 +37,7 @@ export default {
     logout () {
       // 登出
       // 跳转登录，清空session
+      this.$store.commit('clearToken');
       this.$router.push('/login')
     }
   }

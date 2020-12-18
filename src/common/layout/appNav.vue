@@ -2,35 +2,49 @@
   <div class="app-nav">
 
     <el-menu
-    class="el-menu-vertical-demo el-menu"
-    :collapse="isCollapse"
-    @open="handleOpen"
-    @close="handleClose"
-    :default-active="defaultActive"
-    :router="isRouter"
-    background-color="#324157"
-    text-color="#bfcbd9"
-    active-text-color="#20a0ff"
+      class="el-menu-vertical-demo el-menu"
+      :collapse="isCollapse"
+      @open="handleOpen"
+      @close="handleClose"
+      :default-active="defaultActive"
+      :router="isRouter"
+      background-color="#324157"
+      text-color="#bfcbd9"
+      active-text-color="#20a0ff"
     >
-    <template v-for="item in routes">
-      <el-menu-item v-if="!item.hidden && item.isSingle" :index="item.path" :key="item.path">
-        <template slot="title">
-          <i :class="item.meta.icon"></i>
-          <span>{{item.meta.title}}</span>
-        </template>
-      </el-menu-item>
-      <el-submenu v-else-if="!item.hidden && !item.isSingle" :index="item.path" :key="item.path">
-        <template slot="title">
-          <i :class="item.meta.icon"></i>
-          <span>{{item.meta.title}}</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item :route="childItem.path" v-if="!childItem.hidden" v-for="childItem in item.children" :index="childItem.path" :key="childItem.name">
-            {{childItem.meta.title}}
-          </el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
-    </template>
+      <template v-for="item in routes">
+        <el-menu-item
+          v-if="!item.hidden && item.isSingle"
+          :index="item.path"
+          :key="item.path"
+        >
+          <template slot="title">
+            <i :class="item.meta.icon"></i>
+            <span>{{item.meta.title}}</span>
+          </template>
+        </el-menu-item>
+        <el-submenu
+          v-else-if="!item.hidden && !item.isSingle"
+          :index="item.path"
+          :key="item.path"
+        >
+          <template slot="title">
+            <i :class="item.meta.icon"></i>
+            <span>{{item.meta.title}}</span>
+          </template>
+          <el-menu-item-group>
+            <el-menu-item
+              :route="childItem.path"
+              v-if="!childItem.hidden"
+              v-for="childItem in item.children"
+              :index="childItem.path"
+              :key="childItem.name"
+            >
+              {{childItem.meta.title}}
+            </el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+      </template>
     </el-menu>
   </div>
 </template>
@@ -83,7 +97,7 @@ export default {
   // width: 80px;
   // padding: 5px;
   min-height: 650px;
-  background-color:#324157;
+  background-color: #324157;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 180px;
@@ -110,7 +124,7 @@ export default {
 </style>
 
 <style lang="scss">
-.el-menu-item-group__title{
+.el-menu-item-group__title {
   padding: 0;
 }
 .el-submenu .el-menu-item {

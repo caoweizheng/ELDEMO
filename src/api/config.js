@@ -4,7 +4,7 @@ import axios from "@/utils/axios";
 
 export default {
   queryProductList (params) {
-    return axios.get('/app/blog/list', params).then(resp => {
+    return axios.post('/app/allocate/shipmentList', params).then(resp => {
       return resp
     })
   },

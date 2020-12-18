@@ -1,4 +1,5 @@
 <template>
+<div class="basic-info">
   <el-form :inline="true">
     <div class="m-b-20">
       <label class="m-r-20">单据类型 </label>
@@ -39,6 +40,7 @@
       </el-form-item>
     </div>
   </el-form>
+</div>
 </template>
 
 <script>
@@ -64,7 +66,7 @@ export default {
 </script>
 
 <style scope>
-.el-input__inner {
+.basic-info .el-input__inner {
   width: 350px;
 }
 </style>

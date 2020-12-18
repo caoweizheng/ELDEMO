@@ -1,7 +1,7 @@
 <template>
   <div class="bg-w p-20">
     <el-form :inline="true">
-      <el-form-item label="建单时间" class="block">
+      <el-form-item label="建单时间">
         <app-date-picker v-model="searchParams.startTime" type="date" align="right" placeholder="开始时间">
         </app-date-picker>
         <app-date-picker v-model="searchParams.endTime" align="right" type="date" placeholder="结束时间">
@@ -146,7 +146,7 @@ export default {
       });
       this.isLoading = false;
       if (!resp || !resp.data) return;
-      this.tableData = resp.data.items;
+      this.tableData = resp.data.list;
       this.pageOptions.total = resp.data.total;
     },
     reset() {
@@ -172,7 +172,7 @@ export default {
       }
     },
     createShipment() {
-      this.$router.push('create-shipment')
+      this.$router.push('/allocate/create-shipment')
     },
   },
 };

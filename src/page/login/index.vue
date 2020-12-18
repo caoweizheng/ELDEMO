@@ -54,11 +54,18 @@ export default {
       // this.$refs[ruleFormName].validate(async (valid) => {
       //   if(valid){
 
-          let loginRes = await this.$http.login({
+          let resp = await this.$http.login({
             ...this.ruleForm
           })
-          if(loginRes) {
+          if(resp && resp.data) {
             // 缓存session
+            this.$store.commit('setToken', {
+              token: resp.data.token
+            });
+            this.$store.commit('setUserName', {
+              name: resp.data.username
+            });
+
             this.$router.push('/')
           }
         }

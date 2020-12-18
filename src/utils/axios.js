@@ -5,6 +5,8 @@ import Vue from "vue"
 import axios from 'axios'
 import Qs from 'qs'
 import { baseURL, baseHOST } from "./config"
+import router from '../router'
+import store from '../store'
 
 const http = axios.create({
 
@@ -14,12 +16,20 @@ const http = axios.create({
 
 // axios请求拦截器， 在发送请求之前做些什么
 axios.interceptors.request.use((config) => {
+  // config.withCredentials = true // 允许携带token ,这个是解决跨域产生的相关问题
+  // config.timeout = 20 * 1000
+  let token = localStorage.getItem('BLOG_TOKEN')
   // loadding
   // Toast.loading({
   //   message: '加载中...',
   //   forbidClick: true,
   //   loadingType: 'spinner'
   // });
+  if (token) {
+    config.headers = {
+      'access-token': token
+    }
+  }
   return config
 }, (error) => {
   // 请求错误
@@ -29,9 +39,18 @@ axios.interceptors.request.use((config) => {
 
 // 对响应数据做点什么，允许在数据返回客户端前，修改响应的数据
 axios.interceptors.response.use(async (response) => {
+  // 后端返回新的token， 更新.
+  const token = response.headers['access-token'];
+
+  if(token) {
+    store.commit('setToken', { token });
+  }
+
   // 后端返回的 code
   if (response && response.data && response.data.code === 0) {
-    return response
+    return response;
+  } else if (response && response.data && response.data.code === -2) {
+    router.push('/login');
   } else {
     return Promise.reject(response)
   }
@@ -76,7 +95,7 @@ function apiAxios (method, url, params) {
     url: url,
     params: (method === 'GET' || method === 'DELETE') ? params : null,
     data: (method === 'POST' || method === 'PUT') ? params : null,
-    timeout: 20 * 1000
+    // timeout: 20 * 1000
   }
   return new Promise((resolve, reject) => {
     axios(httpDefault)
