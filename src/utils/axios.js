@@ -48,6 +48,7 @@ axios.interceptors.response.use(async (response) => {
 
   // 后端返回的 code
   if (response && response.data && response.data.code === 0) {
+    debugger
     return response;
   } else if (response && response.data && response.data.code === -2) {
     router.push('/login');

@@ -92,7 +92,7 @@ import appDatePicker from '@/components/datePicker'
 import orderDetail from '@/components/order.detail'
 import appSteps from '@/components/steps'
 
-import BaseBreadcrumb from "@/components/base-breadcrumb";
+import BaseBreadcrumb from "@/components/base-layout/base-breadcrumb";
 
 Vue.config.productionTip = false
 
