@@ -1,6 +1,31 @@
+<!--
+ * @Descripttion:
+ * @version:
+ * @Author: cwz0525
+ * @Date: 2020-03-24 17:16:16
+ * @LastEditors: cwz0525
+ * @LastEditTime: 2020-12-25 16:17:27
+-->
 <template>
   <div class="app-content">
     <highcharts :options="chartOptions"></highcharts>
+    <base-string
+      label="款号"
+      v-model="divvv"
+      placeholder="请输入款号"
+      textAlign="right"
+      labelWidth="120"
+      :disabled="true"
+      :readOnly="false"
+      :isRequire="true"
+    ></base-string>
+    <base-string
+      label="订单编号"
+      v-model="divvv"
+      placeholder="请输入订单编号"
+      textAlign="right"
+      labelWidth="120"
+    ></base-string>
   </div>
 </template>
 
@@ -14,6 +39,7 @@ export default {
   },
   data () {
     return {
+      divvv: 'divvvv',
       chartOptions: {
         chart: {
           type: 'bar'

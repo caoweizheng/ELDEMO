@@ -93,6 +93,8 @@ import orderDetail from '@/components/order.detail'
 import appSteps from '@/components/steps'
 
 import BaseBreadcrumb from "@/components/base-layout/base-breadcrumb";
+import BaseLayout from "@/components/base-layout/base-layout";
+import BaseString from "@/components/base-layout/base-string";
 
 Vue.config.productionTip = false
 
@@ -178,6 +180,8 @@ Vue.component('app-date-picker', appDatePicker);
 Vue.component('order-detail', orderDetail);
 Vue.component('app-steps', appSteps);
 Vue.component('base-breadcrumb', BaseBreadcrumb);
+Vue.component('base-layout', BaseLayout);
+Vue.component('base-string', BaseString);
 
 Vue.use(Loading.directive);
 
