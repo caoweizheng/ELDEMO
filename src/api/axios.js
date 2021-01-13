@@ -1,3 +1,11 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: cwz0525
+ * @Date: 2020-03-30 11:24:58
+ * @LastEditors: cwz0525
+ * @LastEditTime: 2020-12-28 14:45:31
+ */
 /**
  * axios二次封装
  */
@@ -42,15 +50,21 @@ axios.interceptors.response.use(async (response) => {
   // 后端返回新的token， 更新.
   const token = response.headers['access-token'];
 
-  if(token) {
+  if (token) {
     store.commit('setToken', { token });
   }
 
   // 后端返回的 code
   if (response && response.data && response.data.code === 0) {
-    debugger
     return response;
+    // -2: 表示没有登录状态
   } else if (response && response.data && response.data.code === -2) {
+    try {
+      await Vue.prototype.$confirm('无效登录信息，请重新登录', '提示', {
+        type:'warning'
+      })
+    } catch (error) {
+    }
     router.push('/login');
   } else {
     return Promise.reject(response)

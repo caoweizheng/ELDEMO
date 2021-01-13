@@ -4,7 +4,7 @@
  * @Author: cwz0525
  * @Date: 2020-12-25 10:32:54
  * @LastEditors: cwz0525
- * @LastEditTime: 2020-12-25 15:55:03
+ * @LastEditTime: 2020-12-28 16:04:56
 -->
 <template>
   <div class="base_control">
@@ -16,13 +16,13 @@
       class="base_control__title"
     >
     </div>
-    <div :class="`base-control__input-${inputType} base-control__input`">
+    <div :class="`base_control__input-${inputType} base_control__input`">
       <template v-if="!readOnly">
         <slot name="control"></slot>
       </template>
       <template v-else>
         <div
-          class="base-control__value"
+          class="base_control__value"
           v-html="inputValue"
         ></div>
       </template>
@@ -31,36 +31,16 @@
 </template>
 
 <script>
+import { layout } from './props.config'
 export default {
   name: 'base-layout',
   props: {
-    label: {
-      type: String,
-      default: null
-    },
-    readOnly: {
-      type: Boolean,
-      default: false
-    },
-    value: {
-      type: [String, Number],
-      default: null
-    },
-    inputType: {
-      type: [String, Number],
-      default: 1
-    },
-    isRequire: {
-      type: Boolean,
-      default: false
-    },
-    textAlign: null,
-    labelWidth: null
+    ...layout
   },
   computed: {
-    titleStyle() {
+    titleStyle () {
       let _width;
-      if(isNaN(this.labelWidth) === true) {
+      if (isNaN(this.labelWidth) === true) {
         _width = this.labelWidth;
       } else {
         _width = `${this.labelWidth}px`
@@ -70,12 +50,12 @@ export default {
         textAlign: this.textAlign
       };
     },
-    inputValue() {
+    inputValue () {
       return this.value
     },
-    rootClass() {
+    rootClass () {
       let calssName = '';
-      if(this.isRequire) {
+      if (this.isRequire) {
         calssName += 'isRequire'
       }
       return calssName
@@ -103,11 +83,11 @@ export default {
       }
     }
   }
-  .base-control__input {
+  .base_control__input {
     padding: 0 16px;
   }
-  .base-control__input-1 {
-    .base-control__value {
+  .base_control__input-1 {
+    .base_control__value {
       position: relative;
       &::after {
         content: "";
@@ -121,8 +101,8 @@ export default {
       }
     }
   }
-  .base-control__input-2 {
-    .base-control__value {
+  .base_control__input-2 {
+    .base_control__value {
       overflow: initial;
       text-overflow: initial;
       white-space: pre-wrap;
@@ -131,7 +111,7 @@ export default {
     }
   }
 }
-.table .base-control .base-control__input {
+.table .base_control .base_control__input {
   padding: 0;
 }
 </style>

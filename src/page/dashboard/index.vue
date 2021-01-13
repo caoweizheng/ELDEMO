@@ -4,7 +4,7 @@
  * @Author: cwz0525
  * @Date: 2020-03-24 17:16:16
  * @LastEditors: cwz0525
- * @LastEditTime: 2020-12-25 16:17:27
+ * @LastEditTime: 2020-12-28 20:19:21
 -->
 <template>
   <div class="app-content">
@@ -26,12 +26,15 @@
       textAlign="right"
       labelWidth="120"
     ></base-string>
+    <base-date-picker v-model="date" label="开始时间" type="daterange">
+    </base-date-picker>
+    <p>{{formatDate}}</p>
   </div>
 </template>
 
 <script>
 import Highcharts from "highcharts"
-import {Chart} from 'highcharts-vue'
+import { Chart } from 'highcharts-vue'
 export default {
   name: 'DashboardHome',
   components: {
@@ -40,12 +43,13 @@ export default {
   data () {
     return {
       divvv: 'divvvv',
+      date: '',
       chartOptions: {
         chart: {
           type: 'bar'
         },
         title: {
-          text:  '美元兑欧元汇率走势图'
+          text: '美元兑欧元汇率走势图'
         },
         yAxis: {
           title: {
@@ -56,9 +60,14 @@ export default {
           enabled: false
         },
         series: [{
-          data: [2003,4133,3023,424,1323,7443,3678,5563,4601,1123,4535,5111,2232,5871,8872,2345,11234,2124,5783]
+          data: [2003, 4133, 3023, 424, 1323, 7443, 3678, 5563, 4601, 1123, 4535, 5111, 2232, 5871, 8872, 2345, 11234, 2124, 5783]
         }]
       }
+    }
+  },
+  computed:{
+    formatDate(val) {
+      return this.date
     }
   }
 }

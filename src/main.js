@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from "./store"
 import api from './api'
+import * as utils from '@/utils'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/index.scss' // global css
 import {
@@ -34,7 +35,7 @@ import {
   // ButtonGroup,
   Table,
   TableColumn,
-  DatePicker,
+  // DatePicker,
   // TimeSelect,
   // TimePicker,
   // Popover,
@@ -95,6 +96,7 @@ import appSteps from '@/components/steps'
 import BaseBreadcrumb from "@/components/base-layout/base-breadcrumb";
 import BaseLayout from "@/components/base-layout/base-layout";
 import BaseString from "@/components/base-layout/base-string";
+import BaseDatePicker from "@/components/base-layout/base-date-picker";
 
 Vue.config.productionTip = false
 
@@ -126,7 +128,7 @@ Vue.use(Button);
 // Vue.use(ButtonGroup);
 Vue.use(Table);
 Vue.use(TableColumn);
-Vue.use(DatePicker);
+// Vue.use(DatePicker);
 // Vue.use(TimeSelect);
 // Vue.use(TimePicker);
 // Vue.use(Popover);
@@ -182,6 +184,7 @@ Vue.component('app-steps', appSteps);
 Vue.component('base-breadcrumb', BaseBreadcrumb);
 Vue.component('base-layout', BaseLayout);
 Vue.component('base-string', BaseString);
+Vue.component('base-date-picker', BaseDatePicker);
 
 Vue.use(Loading.directive);
 
@@ -192,6 +195,8 @@ Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
+Vue.prototype.$utils = utils
+
 
 store.commit('updateUserInfo');
 
