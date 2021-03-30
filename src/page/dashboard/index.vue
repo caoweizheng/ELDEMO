@@ -4,7 +4,7 @@
  * @Author: cwz0525
  * @Date: 2020-03-24 17:16:16
  * @LastEditors: cwz0525
- * @LastEditTime: 2020-12-28 20:19:21
+ * @LastEditTime: 2021-03-30 11:57:50
 -->
 <template>
   <div class="app-content">
@@ -22,7 +22,7 @@
     <base-string
       label="订单编号"
       v-model="divvv"
-      placeholder="请输入订单编号"
+      placeholder="请输入订单编号11"
       textAlign="right"
       labelWidth="120"
     ></base-string>

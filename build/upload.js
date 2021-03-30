@@ -4,14 +4,14 @@
  * @Author: cwz0525
  * @Date: 2021-01-13 10:30:24
  * @LastEditors: cwz0525
- * @LastEditTime: 2021-01-13 10:48:51
+ * @LastEditTime: 2021-01-13 11:03:16
  */
 const client = require('scp2')
 const ora = require('ora')
 const path = require('path')
 
-const filePath = path.resolve(__dirname, '/../dist/')
-const outPath = '/root/var/app/ELDEMO'
+const filePath = path.resolve(__dirname + '/../dist/')
+const outPath = '/root/var/app/8083'
 const config = {
   host: '121.4.100.175',
   username: 'root',
@@ -24,7 +24,7 @@ console.log(`上传目录${filePath}, 目标目录${outPath}`)
 upload.start()
 client.scp(filePath, config, (err) => {
   if (err) {
-    console.log(er)
+    console.log(err)
     upload.fail()
   } else {
     upload.succeed()
